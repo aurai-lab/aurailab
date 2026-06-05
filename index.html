@@ -1,4 +1,116 @@
-<!DOCTYPE html><html lang="en"><head><script id="aurai-force-hero-start-js">(function(){
+<!DOCTYPE html><html lang="en"><head>
+
+<script id="aurai-no-flash-clean-cta-js">
+(function(){
+  // Hide before browser can display restored scroll position, then reveal on hero.
+  document.documentElement.classList.add("aurai-preboot");
+
+  try{
+    if("scrollRestoration" in history) history.scrollRestoration = "manual";
+    if(location.hash){
+      history.replaceState(null, document.title, location.pathname + location.search);
+    }
+  }catch(e){}
+
+  function topNow(){
+    window.scrollTo(0,0);
+    document.documentElement.scrollTop = 0;
+    if(document.body) document.body.scrollTop = 0;
+  }
+
+  function ready(){
+    topNow();
+    document.documentElement.classList.remove("aurai-preboot");
+    document.documentElement.classList.add("aurai-ready");
+  }
+
+  topNow();
+  requestAnimationFrame(topNow);
+  setTimeout(topNow, 0);
+  setTimeout(topNow, 40);
+  setTimeout(ready, 90);
+  setTimeout(topNow, 180);
+  setTimeout(topNow, 420);
+
+  window.addEventListener("DOMContentLoaded", function(){
+    topNow();
+    setTimeout(ready, 60);
+  }, {once:true});
+
+  window.addEventListener("load", function(){
+    topNow();
+    setTimeout(ready, 30);
+  }, {once:true});
+
+  window.addEventListener("pageshow", function(){
+    topNow();
+    ready();
+  });
+})();
+</script>
+
+
+<style id="aurai-no-flash-clean-cta-css">
+/* AURAI final: no initial jump + clean CTA zone */
+html.aurai-preboot body{
+  opacity:0!important;
+}
+html.aurai-ready body{
+  opacity:1!important;
+  transition:opacity .28s ease!important;
+}
+
+/* Remove the pink artifact between hero buttons */
+.auraiHero .ctaRow{
+  position:relative!important;
+  z-index:20!important;
+  isolation:isolate!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+
+.auraiHero .ctaRow::before,
+.auraiHero .ctaRow::after{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+.auraiHero .button,
+.auraiHero .ctaRow .button{
+  position:relative!important;
+  z-index:30!important;
+  overflow:hidden!important;
+  background:rgba(255,249,247,.78)!important;
+  border:1px solid rgba(231,182,166,.24)!important;
+  box-shadow:0 10px 26px rgba(80,60,120,.06),inset 0 1px 0 rgba(255,255,255,.9)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+.auraiHero .button::before,
+.auraiHero .button::after{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+.auraiHero #pearlCanvas,
+#pearlCanvas{
+  z-index:0!important;
+  pointer-events:none!important;
+}
+
+.auraiHero .heroContent{
+  position:relative!important;
+  z-index:10!important;
+}
+</style>
+<script id="aurai-force-hero-start-js">(function(){
  try{
  if("scrollRestoration" in history){
  history.scrollRestoration = "manual";
